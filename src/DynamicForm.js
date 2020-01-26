@@ -84,12 +84,16 @@ class DynamicForm extends Component{
                     isRequired: true,
                     },
                 {
-                id: 'bmi', displayName: 'BMI', unitOfMeasure: 'kg/m2', type: 'numberInput', bounds: {
+                id: 'bmi', 
+                displayName: 'BMI', 
+                unitOfMeasure: 'kg/m2', 
+                type: 'numberInput', 
+                bounds: {
                         upperLimit: 100,
                     },
-                    display: false,
-                    isRequired: false,
-                    },
+                display: false,
+                isRequired: false,
+                },
                 ],
             },
             form2:{
@@ -148,7 +152,9 @@ class DynamicForm extends Component{
 
 
     submitForm = event => {
+
         const {fields, ...inputFields} = this.state;
+        // const {name} = this.state;
         console.log(inputFields);
         event.preventDefault();
 
@@ -158,6 +164,13 @@ class DynamicForm extends Component{
         this.setState({
             [event.currentTarget.name]: event.currentTarget.value
         });
+        if(this.state.height&&this.state.weight){
+            this.setState({
+                BMI:25
+            })
+        }
+
+
     }
 
 
@@ -165,10 +178,13 @@ class DynamicForm extends Component{
 
 
     render (){
-
-    const {dataElements} = this.state.form2;
+    
+    //Here to choose form1 or form2 !!
+    const {dataElements, observationName} = this.state.form1;
     return(
+
         <form onSubmit={this.submitForm}>
+            <h2>Observation Name: {observationName}</h2>
             {dataElements.map( form => {
                 if (form.type === "textInput") {
                     return (
@@ -192,6 +208,7 @@ class DynamicForm extends Component{
                             _handleChange={this._handleChange}
                             unit={form.unitOfMeasure}
                             bounds={form.bounds}
+                            state={this.state}
                         />
                         );
                 } 
@@ -209,6 +226,8 @@ class DynamicForm extends Component{
                         );
                 }
             })}
+            <input type="submit" disabled={true}/>
+
         </form>
     )
         }
