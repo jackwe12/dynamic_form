@@ -33,6 +33,10 @@ By changing form1 to form 2, we can test the second form
 I've put the form json data in state in DynamicForm.js as below:
 form1 = bmiReferenceProps
 form2 = headCircumferenceReferenceProps
+
+
+
+```
  this.state={
             form1:{
                 id: 'bmi',
@@ -151,6 +155,7 @@ form2 = headCircumferenceReferenceProps
 
          };
         }
+   ```
         
     
 
