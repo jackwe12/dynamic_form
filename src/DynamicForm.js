@@ -7,28 +7,6 @@ import "./DynamicForm.css";
 class DynamicForm extends Component{
     constructor(){
         super()
-        // this.state = {
-        //     fields:[
-        //         {
-        //             placeholder: "Name",
-        //             name: "remaining_values",
-        //             input_type: "text",
-        //             required:true
-        //         },
-        //         {
-        //             placeholder: "email",
-        //             name: "email",
-        //             input_type: "text",
-        //             required: true
-        //         },
-        //         {
-        //             placeholder: "Prefered time to call you",
-        //             name: "contact_time",
-        //             input_type: "text",
-        //             required: true
-        //         }
-        //     ]
-        // };
         this.state={
             form1:{
                 id: 'bmi',
@@ -137,7 +115,6 @@ class DynamicForm extends Component{
             
             
             },
-            errors:"",
             submitStatus:false
             
             
@@ -196,7 +173,7 @@ class DynamicForm extends Component{
     render (){
     
     //Here to choose form1 or form2 !!
-    const {dataElements, observationName} = this.state.form2;
+    const {dataElements, observationName} = this.state.form1;
     return(
 
         <form onSubmit={this.submitForm}>
