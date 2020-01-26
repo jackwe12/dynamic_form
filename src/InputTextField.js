@@ -22,7 +22,6 @@ class InputTextField extends Component{
           onChange={_handleChange}
           onBlur={(e)=>{
                       let value = e.target.value.trim();
-                      console.log(value)
                       var reg = /^[a-zA-Z]+ [a-zA-Z]+$/
                       let errorMsg = (!value.match(reg)) ? `(Name should be a first and last name (separated by a space) i.e. Json Joe)`: ""
                       this.setState({errors:errorMsg})

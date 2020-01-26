@@ -137,7 +137,8 @@ class DynamicForm extends Component{
             
             
             },
-            errors:""
+            errors:"",
+            submitStatus:false
             
             
 
@@ -161,14 +162,28 @@ class DynamicForm extends Component{
 
 
     };
+
+
     _handleChange = event => {
-        this.setState({
-            [event.currentTarget.name]: event.currentTarget.value
-        });
+        if(event.currentTarget.name==="head-circumference"){
+            this.setState({
+                head:event.currentTarget.value
+            });
+        }else{
+            this.setState({
+                [event.currentTarget.name]: event.currentTarget.value
+            });
+        }
+
         if(this.state.height&&this.state.weight){
             this.setState({
                 BMI:25
             })
+        }
+        if(this.state.name&&this.state.height&&this.state.weight){
+            this.setState({submitStatus:true})
+        }else if(this.state.name&&this.state.head){
+            this.setState({submitStatus:true})
         }
 
 
@@ -181,8 +196,7 @@ class DynamicForm extends Component{
     render (){
     
     //Here to choose form1 or form2 !!
-    const {dataElements, observationName} = this.state.form1;
-    let submitStatus=true;
+    const {dataElements, observationName} = this.state.form2;
     return(
 
         <form onSubmit={this.submitForm}>
@@ -233,7 +247,7 @@ class DynamicForm extends Component{
                         );
                 }
             })}
-            <input type="submit" disabled={submitStatus}/>
+            <input type="submit" disabled={!this.state.submitStatus}/>
 
         </form>
     )
