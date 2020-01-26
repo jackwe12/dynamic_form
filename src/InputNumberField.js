@@ -6,9 +6,10 @@ class InputNumberField extends Component{
     constructor(props){
         super(props)
         this.state={
-            errors:""
+            errors:this.props.errors
         }
     }
+
 
 
     render(){
@@ -20,7 +21,7 @@ class InputNumberField extends Component{
                 {state.height&&state.weight ? (<span>BMI =  {BMI}</span>):(<span>Enter Weight and Height to get BMI</span>) }
                 <span> ({unit}) </span>
                 <div></div>
-                {BMI>bounds.upperLimit ? (<span>{placeholder} must be lower than {bounds.upperLimit} {unit}</span>) : (<span></span>)}
+                {BMI>bounds.upperLimit ? (<span className="errorMsg">({placeholder} must be lower than {bounds.upperLimit} {unit})</span>) : (<span></span>)}
             </div>
         )
     }else {
@@ -35,19 +36,8 @@ class InputNumberField extends Component{
               onChange={_handleChange}  
               onBlur={(e)=>{
                       let value = e.target.value.trim();
-                      let errorMsg = (value > bounds.upperLimit)? `${placeholder} must be lower than ${bounds.upperLimit} ${unit}`: ""
+                      let errorMsg = (value > bounds.upperLimit)? `(${placeholder} must be lower than ${bounds.upperLimit} ${unit})`: ""
                       this.setState({errors:errorMsg})
-                    //   if (name==="head-circumference"){
-                    //     errors= (value > bounds.upperLimit)? `Head Circumference must be lower than ${bounds.upperLimit}`: "1"
-                    //   }else if (name=== "height" ){
-                    //     errors= (value > bounds.upperLimit)? `Height must be lower than ${bounds.upperLimit}`: ""
-                    //     console.log(errors)
-        
-                    //   }else if (name==="weight"){
-                          
-                    //   }else if (name==="bmi"){
-                          
-                    //   }
                     
               }}
               disabled={!display}
@@ -55,7 +45,7 @@ class InputNumberField extends Component{
               
             />
             <span> {unit} </span>
-            <span>{this.state.errors}</span>
+            <span className="errorMsg">{this.state.errors}</span>
           </div>  
             )
     }

@@ -1,0 +1,43 @@
+input{
+    margin:1rem;
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1.5rem;
+}
+label{
+    margin:0.5rem;
+    font-size: 1.5rem;
+}
+
+.errorMsg{
+    color:red
+}
+select{
+    margin:1rem;
+    width: 40%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1.5rem;
+    background-color: white;
+
+}
+span{
+    font-size: 1.5rem;
+}
+input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }

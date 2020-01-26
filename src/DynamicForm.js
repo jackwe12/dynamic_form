@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import InputTextField from './InputTextField';
 import DropdownSelect from './DropdownSelect';
 import InputNumberField from './InputNumberField';
-
+import "./DynamicForm.css";
 
 class DynamicForm extends Component{
     constructor(){
@@ -136,7 +136,8 @@ class DynamicForm extends Component{
                 ], 
             
             
-            }
+            },
+            errors:""
             
             
 
@@ -181,6 +182,7 @@ class DynamicForm extends Component{
     
     //Here to choose form1 or form2 !!
     const {dataElements, observationName} = this.state.form1;
+    let submitStatus=true;
     return(
 
         <form onSubmit={this.submitForm}>
@@ -195,6 +197,7 @@ class DynamicForm extends Component{
                             required={form.isRequired}
                             key={form.id}
                             _handleChange={this._handleChange}
+                            errors={this.state.errors}
                         />
                     );
                 }else if (form.type === "numberInput"){
@@ -209,6 +212,8 @@ class DynamicForm extends Component{
                             unit={form.unitOfMeasure}
                             bounds={form.bounds}
                             state={this.state}
+                            errors={this.state.errors}
+
                         />
                         );
                 } 
@@ -222,11 +227,13 @@ class DynamicForm extends Component{
                             key={form.id}
                             _handleChange={this._handleChange}
                             val = {form.options}
+                            errors={this.state.errors}
+
                         />
                         );
                 }
             })}
-            <input type="submit" disabled={true}/>
+            <input type="submit" disabled={submitStatus}/>
 
         </form>
     )

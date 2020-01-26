@@ -24,13 +24,13 @@ class InputTextField extends Component{
                       let value = e.target.value.trim();
                       console.log(value)
                       var reg = /^[a-zA-Z]+ [a-zA-Z]+$/
-                      let errorMsg = (!value.match(reg)) ? `Name should be a first and last name (separated by a space) i.e. Json Joe`: ""
+                      let errorMsg = (!value.match(reg)) ? `(Name should be a first and last name (separated by a space) i.e. Json Joe)`: ""
                       this.setState({errors:errorMsg})
 
               }}
         
         />
-        <span>{this.state.errors}</span>
+        <span className="errorMsg">{this.state.errors}</span>
 
       </div>
         )
