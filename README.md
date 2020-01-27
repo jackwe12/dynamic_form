@@ -24,12 +24,12 @@ Follow the rule I was provided:
 Required.
 - Height: Number based. Only positive numbers below 300 cm is allowed. Required.
 - Weight: Number based. Only positive numbers below 1000 kg is allowed. Required.
-- BMI: Only calculated based height and weight input. Only shown when weight and Height is provided.
+- BMI: Only calculated based height and weight input. Only shown when weight and Height are provided.
 
 I choose to handle invalid inputs by displaying error messages(in red color).
 Use Simple CSS to style the form.
 
-After submitting the form, it will console.log the form data(So we can proceess with the data)
+After submitting the form, it will console.log the form data(So we can proceed with the data)
 
 
 
