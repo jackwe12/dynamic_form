@@ -154,7 +154,7 @@ class DynamicForm extends Component{
 
         if(this.state.height&&this.state.weight){
             this.setState({
-                BMI:25
+                BMI:(this.state.weight/Math.pow(this.state.height,2) *10000).toFixed(2)
             })
         }
         if(this.state.name&&this.state.height&&this.state.weight){
@@ -222,6 +222,10 @@ class DynamicForm extends Component{
 
                         />
                         );
+                }else{
+                    return (
+                        console.log(form.type + "is not existing type")
+                    )
                 }
             })}
             <input type="submit" disabled={!this.state.submitStatus}/>
