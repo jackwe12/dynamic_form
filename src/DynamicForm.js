@@ -154,7 +154,7 @@ class DynamicForm extends Component{
 
         if(this.state.height&&this.state.weight){
             this.setState({
-                BMI:(this.state.weight/Math.pow(this.state.height,2) *10000).toFixed(2)
+                BMI:(this.state.weight/Math.pow(this.state.height,2)*100).toFixed(2)
             })
         }
         if(this.state.name&&this.state.height&&this.state.weight){
