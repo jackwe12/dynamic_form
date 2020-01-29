@@ -12,57 +12,173 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `yarn test`
+### Introduction 
+This is a dynamic form rendered from JSON schema data.
+As the requirement, I didn't use any library execpt for create-react-app.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Follow the rule I was provided:
 
-### `yarn build`
+- Name: Text based. Should enforce the need to a first and last name (separated by a space). Required.
+- Gender: Select/option based (male/female). Optional.
+- Head Circumference: Number based. Only position number below 100 cm is allowed.
+Required.
+- Height: Number based. Only positive numbers below 300 cm is allowed. Required.
+- Weight: Number based. Only positive numbers below 1000 kg is allowed. Required.
+- BMI: Only calculated based height and weight input. Only shown when weight and Height are provided.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I choose to handle invalid inputs by displaying error messages(in red color).
+Use Simple CSS to style the form.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+After submitting the form, it will console.log the form data(So we can proceed with the data)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Form selection
+In DynamicForm.js
+We can change the following name to test different form
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+//Here to choose form1 or form2 !!
+    const {dataElements, observationName} = this.state.form1;
+    
+```
+By changing form1 to form 2, we can test the second form
+```
+//Here to choose form1 or form2 !!
+    const {dataElements, observationName} = this.state.form2;
+    
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Form 
+I've put the form json data in state in DynamicForm.js as below:
+```
+form1 = bmiReferenceProps
+```
+```
+form2 = headCircumferenceReferenceProps
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+```
+ this.state={
+            form1:{
+                id: 'bmi',
+                observationName: 'BMI - Body mass index',
+                dataElements: [
+                {
+                    id: 'name',
+                    displayName: 'Name',
+                    type: 'textInput',
+                    display: true,
+                    isRequired: true,
+                }, 
+                {
+                    id: 'gender',
+                    displayName: 'Gender',
+                    type: 'select',
+                    options: [
+                        {
+                        id: 1,
+                                name: 'Male',
+                        isDefault: true,
+                                sortOrder: 1,
+                                },
+                        {
+                        id: 2,
+                                name: 'Female',
+                                isDefault: false,
+                                sortOrder: 2,
+                        }, ],
+                    display: true,
+                    isRequired: false,
+                    },
+                    {
+                    id: 'weight',
+                    displayName: 'Weight',
+                    unitOfMeasure: 'kg',
+                    type: 'numberInput',
+                    bounds: {
+                        upperLimit: 1000,
+                    },
+                    display: true,
+                    isRequired: true,
+                    },
+                    {
+                    id: 'height',
+                    displayName: 'Height',
+                    unitOfMeasure: 'cm',
+                    type: 'numberInput',
+                    bounds: {
+                        upperLimit: 300,
+                    },
+                    display: true,
+                    isRequired: true,
+                    },
+                {
+                id: 'bmi', 
+                displayName: 'BMI', 
+                unitOfMeasure: 'kg/m2', 
+                type: 'numberInput', 
+                bounds: {
+                        upperLimit: 100,
+                    },
+                display: false,
+                isRequired: false,
+                },
+                ],
+            },
+            form2:{
+                id: 'head-circumference', observationName: 'Head Circumference', 
+                dataElements: [
+                    {
+                      id: 'name',
+                      displayName: 'Name',
+                      type: 'textInput',
+                      display: true,
+                      isRequired: true,
+                }, {
+                      id: 'gender',
+                      displayName: 'Gender',
+                      type: 'select',
+                      options: [
+                {
+                id: 1,
+                          name: 'Male',
+                          isDefault: true,
+                          sortOrder: 1,
+                }, {
+                          id: 2,
+                          name: 'Female',
+                          isDefault: false,
+                          sortOrder: 2,
+                }, ],
+                      display: true,
+                      isRequired: false,
+                    },
+                {
+                id: 'head-circumference', displayName: 'Head Circumference', unitOfMeasure: 'cm',
+                type: 'numberInput',
+                bounds: {
+                        upperLimit: 1000,
+                      },
+                      display: true,
+                      isRequired: true,
+                    },
+                ], 
+            
+            
+            },
+            submitStatus:false
+            
+            
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
+         };
+        }
+   ```
+        
+    
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
